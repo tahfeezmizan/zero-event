@@ -55,19 +55,19 @@ const Navbar = () => {
         },
         {
             title: 'About',
-            href: '/'
+            href: '/About'
         },
         {
             title: 'Events',
-            href: '/'
+            href: '/events'
         },
         {
             title: 'Blogs',
-            href: '/'
+            href: '/home'
         },
         {
             title: 'Contact',
-            href: '/'
+            href: '/home'
         },
     ];
 
@@ -105,7 +105,7 @@ const Navbar = () => {
                         <div className="ml-4 flex justify-center items-center space-x-6">
                             {
                                 links.map((link, index) => (
-                                    <Link key={index} className={` ${pathName === link.href ? 'text-red-500 font-medium' : "text-white font-medium"} `} href={link.href}>{link.title}</Link>
+                                    <Link key={index} className={` ${pathName === link.href ? 'bg-gradient-to-r from-[#ffbe30] to-[#ff5007] text-white font-Roboto text-base px-2 py-1 font-semibold' : "text-white font-medium"} `} href={link.href}>{link.title}</Link>
                                 ))
                             }
                             <div className="">
