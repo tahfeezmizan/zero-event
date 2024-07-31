@@ -3,17 +3,18 @@ import Link from 'next/link';
 import { RxCross2 } from "react-icons/rx";
 import { RiMenu3Fill, RiSearchLine } from "react-icons/ri";
 import { usePathname, useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
     const [isClick, setIsclick] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchText, setSearchText] = useState('');
+    const [navbarBackground, setNavbarBackground] = useState('transparent');
     const pathName = usePathname();
     const route = useRouter();
 
     const toggleNavbar = () => {
-        setIsclick(!isClick)
+        setIsclick(!isClick);
     }
 
     const toggleSearch = () => {
@@ -31,6 +32,22 @@ const Navbar = () => {
         setIsSearchOpen(false);
     }
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setNavbarBackground('#333333');
+            } else {
+                setNavbarBackground('transparent');
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     const links = [
         {
             title: 'Home',
@@ -38,49 +55,49 @@ const Navbar = () => {
         },
         {
             title: 'About',
-            href: '/about'
+            href: '/'
         },
         {
-            title: 'Dashboard',
-            href: '/dashboard'
-        },
-        {
-            title: 'Services',
-            href: '/services'
+            title: 'Events',
+            href: '/'
         },
         {
             title: 'Blogs',
-            href: '/blogs'
+            href: '/'
         },
-    ]
+        {
+            title: 'Contact',
+            href: '/'
+        },
+    ];
 
     const handleLogin = () => {
-        route.push('/login')
-    }
+        route.push('/login');
+    };
 
-    if (pathName.includes("dashboard"))
-        return (
-            <div className='bg-cyan-500 p-3 text-white'>
-                <nav className="flex justify-between">
-                    <h3 className="text-3xl">Dashboard</h3>
+    // if (pathName.includes("dashboard"))
+    //     return (
+    //         <div className='bg-cyan-500 p-3 text-white'>
+    //             <nav className="flex justify-between">
+    //                 <h3 className="text-3xl">Dashboard</h3>
 
-                    <ul className="flex gap-4 items-center ">
-                        <li>Manage User</li>
-                        <li>Manage Properties</li>
-                    </ul>
+    //                 <ul className="flex gap-4 items-center ">
+    //                     <li>Manage User</li>
+    //                     <li>Manage Properties</li>
+    //                 </ul>
 
-                </nav>
-            </div>
-        )
+    //             </nav>
+    //         </div>
+    //     );
 
     return (
-        <nav className="bg-black">
+        <nav className={`sticky top-0 z-10 transition-colors duration-300 ease-in-out`} style={{ backgroundColor: navbarBackground }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center ">
                         <div className="flex-shrink-0">
                             <a href="/" className="text-white text-2xl">
-                                Logo
+                                Zero Events
                             </a>
                         </div>
                     </div>
@@ -91,7 +108,6 @@ const Navbar = () => {
                                     <Link key={index} className={` ${pathName === link.href ? 'text-red-500 font-medium' : "text-white font-medium"} `} href={link.href}>{link.title}</Link>
                                 ))
                             }
-
                             <div className="">
                                 <form onSubmit={handleSearchSubmit} className="relative">
                                     {isSearchOpen && (
@@ -108,11 +124,9 @@ const Navbar = () => {
                                     </button>
                                 </form>
                             </div>
-
                             <button onClick={handleLogin} className='text-white py-1 px-3'>Login</button>
                         </div>
                     </div>
-
                     <div className="lg:hidden flex items-center">
                         <button
                             className="inline-flex items-center justify-center p-2 text-3xl rounded-md text-white md:text-white hover:text-white focus:outline-none transition ease-in-out focus:ring-inset focus:ring-white"
@@ -130,7 +144,7 @@ const Navbar = () => {
                 </div>
             </div>
             {isClick && (
-                <div className="lg:hidden flex flex-col items-center space-y-3 py-4">
+                <div className="absolute left-0 right-0 lg:hidden bg-[#333333] flex flex-col items-center space-y-3 py-4 transition-all duration-300 ease-in-out">
                     {
                         links.map((link, index) => (
                             <Link key={index} className={` ${pathName === link.href ? 'text-red-500 font-medium' : "text-white font-medium"} `} href={link.href}>{link.title}</Link>
