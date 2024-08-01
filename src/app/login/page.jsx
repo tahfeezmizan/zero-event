@@ -90,7 +90,7 @@ const Loginpage = () => {
                                 </button>
                             </div>
                         </form>
-                        <p className="text-lg font-OpenSans font-semibold text-center pt-6">Have an Account? <Link className='' href={`/singup`}>Register</Link></p>
+                        <p className="text-lg font-OpenSans font-semibold text-center pt-6">Need an Account? <Link className='' href={`/singup`}>Register</Link></p>
                     </div>
                 </div>
             </div>

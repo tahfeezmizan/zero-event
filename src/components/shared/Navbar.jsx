@@ -81,7 +81,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
-                            <Link href="/" className="text-white text-2xl">
+                            <Link href="/" className="text-white text-2xl font-Roboto font-bold">
                                 Zero Events
                             </Link>
                         </div>
@@ -92,8 +92,8 @@ const Navbar = () => {
                                 <Link
                                     key={index}
                                     className={`${pathName === link.href
-                                            ? 'bg-gradient-to-r from-[#ffbe30] to-[#ff5007] text-white font-Roboto text-base px-2 py-1 font-semibold'
-                                            : 'text-white font-medium'
+                                        ? 'bg-gradient-to-r from-[#ffbe30] to-[#ff5007] text-white font-Roboto text-base px-2 py-1 font-semibold'
+                                        : 'text-white font-medium'
                                         } hover:bg-gradient-to-r hover:from-[#ffbe30] hover:to-[#ff5007] hover:text-white hover:px-2 hover:py-1 duration-500 transition-colors`}
                                     href={link.href}
                                 >
@@ -116,7 +116,7 @@ const Navbar = () => {
                                     </button>
                                 </form>
                             </div>
-                            <button onClick={handleLogin} className="text-white py-1 px-3">Login</button>
+                            <button onClick={handleLogin} className="text-white font-Roboto text-base px-2 py-1 font-semibold hover:bg-gradient-to-r hover:from-[#ffbe30] hover:to-[#ff5007] hover:text-white hover:px-2 hover:py-1 duration-500 transition-colors">Login</button>
                         </div>
                     </div>
                     <div className="lg:hidden flex items-center">

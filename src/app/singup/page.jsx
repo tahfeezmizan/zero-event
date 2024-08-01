@@ -131,7 +131,7 @@ const SignUpPage = () => {
                                 </button>
                             </div>
                         </form>
-                        <p className="text-lg font-OpenSans font-semibold text-center pt-6">Have an Account? <Link className='' href={`/login`}>Login</Link></p>
+                        <p className="text-lg font-OpenSans font-semibold text-center pt-6">Already Have an Account? <Link className='' href={`/login`}>Login</Link></p>
                     </div>
                 </div>
             </div>
