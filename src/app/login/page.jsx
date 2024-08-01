@@ -36,14 +36,6 @@ const Loginpage = () => {
     return (
         <div className='min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 -mt-16'>
             <div className="grid grid-cols-1 lg:grid-cols-2 border rounded-2xl overflow-hidden shadow-xl max-w-5xl w-full">
-                <div className="col-span-1 flex items-center justify-center" style={{
-                    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${singUpImg.src})`,
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat'
-                }}>
-                    {/* Image background */}
-                </div>
                 <div className="col-span-1 flex items-center justify-center">
                     <div className="py-16 px-10 w-full">
                         <h2 className="text-4xl text-center font-Roboto font-bold mb-8">Login</h2>
@@ -92,6 +84,15 @@ const Loginpage = () => {
                         </form>
                         <p className="text-lg font-OpenSans font-semibold text-center pt-6">Need an Account? <Link className='' href={`/singup`}>Register</Link></p>
                     </div>
+                </div>
+
+                <div className="col-span-1 flex items-center justify-center" style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${singUpImg.src})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                }}>
+                    {/* Image background */}
                 </div>
             </div>
         </div>
