@@ -1,7 +1,18 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { IoLocationOutline } from "react-icons/io5";
 
 const Featuredevents = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/todos')
+            .then(data => {
+                console.log(data.data);
+            })
+    }, [])
+
+
     return (
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20'>
             <div className="text-center mb-14">
