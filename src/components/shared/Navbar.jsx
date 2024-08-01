@@ -65,10 +65,10 @@ const Navbar = () => {
 
     const links = [
         { title: 'Home', href: '/' },
-        { title: 'About', href: '/about' },
-        { title: 'Events', href: '/events' },
-        { title: 'Blogs', href: '/blogs' },
-        { title: 'Contact', href: '/contact' },
+        { title: 'About', href: '' },
+        { title: 'Events', href: '' },
+        { title: 'Blogs', href: '' },
+        { title: 'Contact', href: '' },
     ];
 
     const handleLogin = () => {

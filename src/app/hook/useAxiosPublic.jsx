@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosPublic = axios.create({
-    baseURL: 'https://jsonplaceholder.typicode.com/todos'
+    baseURL: 'https://jsonplaceholder.typicode.com'
 });
 
 const useAxiosPublic = () => {
