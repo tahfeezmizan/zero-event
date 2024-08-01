@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import singUpImg from '../../../public/login-bg.jpg';
 import Link from 'next/link';
 
-const SingUppage = () => {
+const SignUpPage = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -42,18 +42,18 @@ const SingUppage = () => {
     };
 
     return (
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  '>
-            <div className="grid grid-cols-1 lg:grid-cols-2 border rounded-2xl overflow-hidden shadow-xl">
-                <div className="col-span-1" style={{
+        <div className='min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 -mt-16'>
+            <div className="grid grid-cols-1 lg:grid-cols-2 border rounded-2xl overflow-hidden shadow-xl max-w-5xl w-full">
+                <div className="col-span-1 flex items-center justify-center" style={{
                     backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${singUpImg.src})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'
                 }}>
-                    {/* <img src={singUpImg.src} className='bg-cover' alt="" /> */}
+                    {/* Image background */}
                 </div>
-                <div className="col-span-1 ">
-                    <div className="py-16 px-10">
+                <div className="col-span-1 flex items-center justify-center">
+                    <div className="py-16 px-10 w-full">
                         <h2 className="text-4xl text-center font-Roboto font-bold mb-8">Sign Up</h2>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
@@ -131,7 +131,6 @@ const SingUppage = () => {
                                 </button>
                             </div>
                         </form>
-
                         <p className="text-lg font-OpenSans font-semibold text-center pt-6">Have an Account? <Link className='' href={`/login`}>Login</Link></p>
                     </div>
                 </div>
@@ -140,4 +139,4 @@ const SingUppage = () => {
     );
 };
 
-export default SingUppage;
+export default SignUpPage;

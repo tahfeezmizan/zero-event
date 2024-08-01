@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from 'next/link';
 import { RxCross2 } from "react-icons/rx";
 import { RiMenu3Fill, RiSearchLine } from "react-icons/ri";
@@ -11,7 +11,7 @@ const Navbar = () => {
     const [searchText, setSearchText] = useState('');
     const [navbarBackground, setNavbarBackground] = useState('transparent');
     const pathName = usePathname();
-    const route = useRouter();
+    const router = useRouter();
 
     const toggleNavbar = () => {
         setIsclick(!isClick);
@@ -34,7 +34,12 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 50) {
+            if (pathName === '/signup') {
+                setNavbarBackground('#333333');
+            } else if (pathName === '/login') {
+                setNavbarBackground('#333333')
+            }
+            else if (window.scrollY > 50) {
                 setNavbarBackground('#333333');
             } else {
                 setNavbarBackground('transparent');
@@ -43,72 +48,59 @@ const Navbar = () => {
 
         window.addEventListener('scroll', handleScroll);
 
+        handleScroll();
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [pathName]);
+
+    useEffect(() => {
+        if (pathName === '/signup' || pathName === '/login') {
+            setNavbarBackground('#333333');
+        } else {
+            setNavbarBackground('transparent');
+        }
+    }, [pathName]);
 
     const links = [
-        {
-            title: 'Home',
-            href: '/'
-        },
-        {
-            title: 'About',
-            href: '/About'
-        },
-        {
-            title: 'Events',
-            href: '/events'
-        },
-        {
-            title: 'Blogs',
-            href: '/home'
-        },
-        {
-            title: 'Contact',
-            href: '/home'
-        },
+        { title: 'Home', href: '/' },
+        { title: 'About', href: '/about' },
+        { title: 'Events', href: '/events' },
+        { title: 'Blogs', href: '/blogs' },
+        { title: 'Contact', href: '/contact' },
     ];
 
     const handleLogin = () => {
-        route.push('/login');
+        router.push('/login');
     };
-
-    // if (pathName.includes("dashboard"))
-    //     return (
-    //         <div className='bg-cyan-500 p-3 text-white'>
-    //             <nav className="flex justify-between">
-    //                 <h3 className="text-3xl">Dashboard</h3>
-
-    //                 <ul className="flex gap-4 items-center ">
-    //                     <li>Manage User</li>
-    //                     <li>Manage Properties</li>
-    //                 </ul>
-
-    //             </nav>
-    //         </div>
-    //     );
 
     return (
         <nav className={`sticky top-0 z-10 transition-colors duration-300 ease-in-out`} style={{ backgroundColor: navbarBackground }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
-                    <div className="flex items-center ">
+                    <div className="flex items-center">
                         <div className="flex-shrink-0">
-                            <a href="/" className="text-white text-2xl">
+                            <Link href="/" className="text-white text-2xl">
                                 Zero Events
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="hidden lg:block">
-                        <div className="ml-4 flex justify-center items-center space-x-6">
-                            {
-                                links.map((link, index) => (
-                                    <Link key={index} className={` ${pathName === link.href ? 'bg-gradient-to-r from-[#ffbe30] to-[#ff5007] text-white font-Roboto text-base px-2 py-1 font-semibold' : "text-white font-medium"} `} href={link.href}>{link.title}</Link>
-                                ))
-                            }
-                            <div className="">
+                        <div className="ml-4 flex justify-center items-center space-x-7">
+                            {links.map((link, index) => (
+                                <Link
+                                    key={index}
+                                    className={`${pathName === link.href
+                                            ? 'bg-gradient-to-r from-[#ffbe30] to-[#ff5007] text-white font-Roboto text-base px-2 py-1 font-semibold'
+                                            : 'text-white font-medium'
+                                        } hover:bg-gradient-to-r hover:from-[#ffbe30] hover:to-[#ff5007] hover:text-white hover:px-2 hover:py-1 duration-500 transition-colors`}
+                                    href={link.href}
+                                >
+                                    {link.title}
+                                </Link>
+                            ))}
+                            <div>
                                 <form onSubmit={handleSearchSubmit} className="relative">
                                     {isSearchOpen && (
                                         <input
@@ -124,33 +116,32 @@ const Navbar = () => {
                                     </button>
                                 </form>
                             </div>
-                            <button onClick={handleLogin} className='text-white py-1 px-3'>Login</button>
+                            <button onClick={handleLogin} className="text-white py-1 px-3">Login</button>
                         </div>
                     </div>
                     <div className="lg:hidden flex items-center">
                         <button
-                            className="inline-flex items-center justify-center p-2 text-3xl rounded-md text-white md:text-white hover:text-white focus:outline-none transition ease-in-out focus:ring-inset focus:ring-white"
+                            className="inline-flex items-center justify-center p-2 text-3xl rounded-md text-white hover:text-white focus:outline-none transition ease-in-out focus:ring-inset focus:ring-white"
                             onClick={toggleNavbar}
                         >
-                            {
-                                isClick ? (
-                                    <RxCross2 />
-                                ) : (
-                                    <RiMenu3Fill />
-                                )
-                            }
+                            {isClick ? <RxCross2 /> : <RiMenu3Fill />}
                         </button>
                     </div>
                 </div>
             </div>
             {isClick && (
                 <div className="absolute left-0 right-0 lg:hidden bg-[#333333] flex flex-col items-center space-y-3 py-4 transition-all duration-300 ease-in-out">
-                    {
-                        links.map((link, index) => (
-                            <Link key={index} className={` ${pathName === link.href ? 'text-red-500 font-medium' : "text-white font-medium"} `} href={link.href}>{link.title}</Link>
-                        ))
-                    }
-                    <button onClick={handleLogin} className='text-white py-1 px-3'>Login</button>
+                    {links.map((link, index) => (
+                        <Link
+                            key={index}
+                            className={`${pathName === link.href ? 'bg-gradient-to-r from-[#ffbe30] to-[#ff5007] text-white font-Roboto text-base px-2 py-1 font-semibold' : 'text-white font-medium'
+                                } hover:bg-gradient-to-r hover:from-[#ffbe30] hover:to-[#ff5007] hover:text-white transition-colors`}
+                            href={link.href}
+                        >
+                            {link.title}
+                        </Link>
+                    ))}
+                    <button onClick={handleLogin} className="text-white py-1 px-3">Login</button>
                     <form onSubmit={handleSearchSubmit} className="relative w-full flex justify-center">
                         {isSearchOpen && (
                             <input
